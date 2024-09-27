@@ -1,0 +1,41 @@
+diff -uprN ./xkb.org/symbols/pc ./xkb/symbols/pc
+--- ./xkb.org/symbols/pc	2024-09-27 10:21:19.367728575 +0900
++++ ./xkb/symbols/pc	2024-09-27 11:23:57.410353766 +0900
+@@ -19,7 +19,7 @@ xkb_symbols "pc105" {
+     key  <TAB> {	[ Tab,	ISO_Left_Tab	]	};
+     key <RTRN> {	[ Return		]	};
+ 
+-    key <CAPS> {	[ Caps_Lock		]	};
++    key <CAPS> {	[ Control_R		]	};
+     key <NMLK> {	[ Num_Lock 		]	};
+ 
+     key <LFSH> {	[ Shift_L		]	};
+diff -uprN ./xkb.org/symbols/us ./xkb/symbols/us
+--- ./xkb.org/symbols/us	2024-09-27 10:21:19.367728575 +0900
++++ ./xkb/symbols/us	2024-09-27 11:23:57.410353766 +0900
+@@ -35,7 +35,7 @@ xkb_symbols "basic" {
+     key <AC03> {	[	  d,	D		]	};
+     key <AC04> {	[	  f,	F		]	};
+     key <AC05> {	[	  g,	G		]	};
+-    key <AC06> {	[	  h,	H		]	};
++    key <AC06> {	[	  h,	H, BackSpace	], type[Group1] = "PC_CONTROL_LEVEL3" };
+     key <AC07> {	[	  j,	J		]	};
+     key <AC08> {	[	  k,	K		]	};
+     key <AC09> {	[	  l,	L		]	};
+diff -uprN ./xkb.org/types/basic ./xkb/types/basic
+--- ./xkb.org/types/basic	2024-09-27 10:21:19.379728734 +0900
++++ ./xkb/types/basic	2024-09-27 11:23:57.422354845 +0900
+@@ -27,4 +27,13 @@ default xkb_types "basic" {
+ 	level_name[Level2] = "Caps";
+     };
+ 
++    type "PC_CONTROL_LEVEL3" {
++        modifiers= Shift+Control;
++        map[Shift]= Level2;
++        map[Control]= Level3;
++        level_name[Level1]= "Base";
++        level_name[Level2]= "Shift";
++        level_name[Level3]= "Control";
++    };
++
+ };
